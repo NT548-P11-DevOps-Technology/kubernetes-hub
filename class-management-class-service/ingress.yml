@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: class-service-ingress
+spec:
+  rules:
+  - host: class-api.th1enlm02.live
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: class-service
+              port:
+                number: 8000

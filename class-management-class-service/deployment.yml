@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: class-deployment
+  labels:
+    app: class-management-class-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: class-management-class-service
+  template:
+    metadata:
+      labels:
+        app: class-management-class-service
+    spec:
+      containers:
+        - name: class-management-class-service-container
+          image: th1enlm02/class-management-class-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: HOST
+              value: class-service-postgresql
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: class-postgresql-configmap
+                  key: dbName
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: class-postgresql-secret
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: class-postgresql-secret
+                  key: password
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: class-postgresql-deployment
+  labels:
+    app: class-service-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: class-service-postgresql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: class-service-postgresql
+    spec:
+      containers:
+        - name: class-service-postgresql-container
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: class-postgresql-configmap
+                  key: dbName
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: class-postgresql-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: class-postgresql-secret
+                  key: password
+          volumeMounts:
+            # - name: class-service-postgresql-data
+            #   mountPath: /var/lib/postgresql/data
+            - name: init-sql
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: class-service-postgresql-data
+          persistentVolumeClaim:
+            claimName: postgresql-pvc
+        - name: init-sql
+          configMap:
+            name: class-postgresql-initdb
