@@ -4,3 +4,10 @@ namespace: loki
 resources:
   - ingress.yml
   - secret.yml
+  - release.yml
+configMapGenerator:
+  - name: loki-values
+    files:
+      - values.yml=values.yml
+configurations:
+  - kustomizeconfig.yml
