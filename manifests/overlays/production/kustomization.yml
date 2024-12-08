@@ -2,3 +2,4 @@ resources:
   - ../../base
   - namespace.yml
 namePrefix: production-
+namespace: production
