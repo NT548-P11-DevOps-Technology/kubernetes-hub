@@ -1,6 +1,6 @@
 resources:
   - ../../base
-  - namespace.yml 
+  - namespace.yml
 patches:
   - path: ./class-management-fe/ingress.yml
   - path: ./class-management-fe/configMap.yml
