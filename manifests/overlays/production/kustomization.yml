@@ -1,5 +1,5 @@
 resources:
   - ../../base
   - namespace.yml
-namePrefix: production-
+# namePrefix: production-
 namespace: production
