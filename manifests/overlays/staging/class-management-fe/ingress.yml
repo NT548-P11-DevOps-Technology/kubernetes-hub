@@ -1,0 +1,7 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+spec:
+  rules:
+  - host: stag-application.th1enlm02.live

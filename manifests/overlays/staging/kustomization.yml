@@ -1,0 +1,11 @@
+resources:
+  - ../../base
+  - namespace.yml 
+patches:
+  - path: ./class-management-fe/ingress.yml
+  - path: ./class-management-fe/configMap.yml
+  - path: ./class-management-auth-service/ingress.yml
+  - path: ./class-management-student-service/ingress.yml
+  - path: ./class-management-lecturer-service/ingress.yml
+  - path: ./class-management-class-service/ingress.yml
+namePrefix: stag-
