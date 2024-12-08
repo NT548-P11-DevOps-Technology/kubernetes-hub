@@ -1,30 +1,31 @@
+chunksCache:
+  allocatedMemory: 500
+
 loki:
-  auth-enabled: false
-  commonConfig:
-    replication_factor: 3
+  auth_enabled: false
   schemaConfig:
     configs:
-      - from: "2024-04-01"
+      - from: 2024-04-01
         store: tsdb
         object_store: s3
         schema: v13
         index:
           prefix: loki_index_
           period: 24h
-  singleBinary:
-    enabled: true
 
-minio:
-  enabled: true
+  storage:
+    # filesystem: null
+    type: s3
+    bucketNames:
+      chunks: "devops"
+      ruler: "devops"
+      admin: "admin"
+    s3:
+      s3: "s3://rVFNpjaDjf4KRhK1sOVC:KXPJzImevqw1hrqFrqU04oXDE1v9bz6KFvICmymr@http://10.0.30.10:9000/devops"
+      insecure: true
+      s3ForcePathStyle: true
 
-deploymentMode: SingleBinary
+memberlist:
+  service:
+    publishNotReadyAddresses: true
 
-singleBinary:
-  replicas: 3
-
-backend:
-  replicas: 0
-read:
-  replicas: 0
-write:
-  replicas: 0
