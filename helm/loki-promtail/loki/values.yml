@@ -29,9 +29,9 @@ deploymentMode: SingleBinary
 
 
 singleBinary:
-  replicas: 3
+  replicas: 1
   persistence:
-    enabled: false
+    size: 5Gi
 
 backend:
   replicas: 0
