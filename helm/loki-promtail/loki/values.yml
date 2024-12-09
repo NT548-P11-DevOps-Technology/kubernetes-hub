@@ -21,11 +21,14 @@ loki:
       ruler: "devops"
       admin: "admin"
     s3:
-      s3: "s3://rVFNpjaDjf4KRhK1sOVC:KXPJzImevqw1hrqFrqU04oXDE1v9bz6KFvICmymr@http://10.0.30.10:9000/devops"
+      s3: "s3://ogXBMfE3Xi5Oypz9G2Bo:ogXBMfE3Xi5Oypz9G2Bo@10.0.30.10:9000/devops"
       insecure: true
       s3ForcePathStyle: true
+  singleBinary:
+    enabled: true
 
 memberlist:
   service:
     publishNotReadyAddresses: true
+
 
