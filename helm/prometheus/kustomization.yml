@@ -1,6 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: monitoring
+namespace: prometheus
 resources:
+  - namespace.yml
+  - repository.yml
+  - release.yml
   - ingress.yml
   - secret.yml
+  # - service-clusterIP.yml
+configMapGenerator:
+  - name: prometheus-values
+    files:
+      - values.yml=values.yml
+configurations:
+  - kustomizeconfig.yml
