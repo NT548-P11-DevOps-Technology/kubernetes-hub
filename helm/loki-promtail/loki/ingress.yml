@@ -9,7 +9,7 @@ metadata:
     ingress.kubernetes.io/auth-secret: "loki-basic-auth"
 spec:
   rules:
-  - host: loki-cluster.th1enlm02.live
+  - host: loki.th1enlm02.live
     http:
       paths:
         - pathType: Prefix
