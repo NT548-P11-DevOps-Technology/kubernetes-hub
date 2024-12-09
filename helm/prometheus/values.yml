@@ -7,6 +7,8 @@ prometheus:
   prometheusSpec:
     storageSpec:
       volumeClaimTemplate:
+      - metadata:
+            name: prometheus-pv
         spec:
           accessModes: ["ReadWriteOnce"]
           resources:
