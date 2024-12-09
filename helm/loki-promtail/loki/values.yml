@@ -17,11 +17,11 @@ loki:
     # filesystem: null
     type: s3
     bucketNames:
-      chunks: "devops"
-      ruler: "devops"
+      chunks: "loki"
+      ruler: "loki"
       admin: "admin"
     s3:
-      s3: "s3://ogXBMfE3Xi5Oypz9G2Bo:ogXBMfE3Xi5Oypz9G2Bo@10.0.30.10:9000/devops"
+      s3: "s3://ogXBMfE3Xi5Oypz9G2Bo:ogXBMfE3Xi5Oypz9G2Bo@10.0.30.10:9000/loki"
       insecure: true
       s3ForcePathStyle: true
 
@@ -29,7 +29,7 @@ deploymentMode: SingleBinary
 
 
 singleBinary:
-  replicas: 1
+  replicas: 3
   persistence:
     enabled: false
 
