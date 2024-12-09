@@ -12,6 +12,6 @@ patches:
   - path: ./class-management-lecturer-service/ingress.yml
   - path: ./class-management-lecturer-service/persistentVolume.yml
   - path: ./class-management-class-service/ingress.yml
-  - path: ./class-management-class-service/deployment.yml
+  - path: ./class-management-class-service/persistentVolume.yml
 # namePrefix: stag-
 namespace: staging
