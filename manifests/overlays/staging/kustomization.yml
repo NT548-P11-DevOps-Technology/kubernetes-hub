@@ -6,8 +6,12 @@ patches:
   - path: ./class-management-fe/configMap.yml
   - path: ./class-management-auth-service/ingress.yml
   - path: ./class-management-auth-service/configMap.yml
+  - path: ./class-management-auth-service/persistentVolume.yml
   - path: ./class-management-student-service/ingress.yml
+  - path: ./class-management-student-service/persistentVolume.yml
   - path: ./class-management-lecturer-service/ingress.yml
+  - path: ./class-management-lecturer-service/persistentVolume.yml
   - path: ./class-management-class-service/ingress.yml
+  - path: ./class-management-class-service/deployment.yml
 # namePrefix: stag-
 namespace: staging

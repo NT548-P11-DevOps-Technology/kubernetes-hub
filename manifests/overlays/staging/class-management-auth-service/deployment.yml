@@ -1,0 +1,14 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-mysql-deployment
+  labels:
+    app: auth-service-mysql
+spec:
+  template:
+    spec:
+      volumes:
+        - name: auth-service-mysql-data
+          persistentVolumeClaim:
+            claimName: stag-auth-mysql-pvc
