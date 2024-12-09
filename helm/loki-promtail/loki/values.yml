@@ -11,6 +11,16 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
+  storage:
+    type: s3
+    bucketNames:
+      chunks: "loki"
+      ruler: "loki"
+      admin: "admin"
+    s3:
+      s3: "s3://ogXBMfE3Xi5Oypz9G2Bo:ogXBMfE3Xi5Oypz9G2Bo@10.0.30.10:9000/loki"
+      insecure: true
+      s3ForcePathStyle: true
   ingester:
     chunk_encoding: snappy
   tracing:
@@ -46,10 +56,6 @@ singleBinary:
 chunksCache:
   # default is 500MB, with limited memory keep this smaller
   writebackSizeLimit: 10MB
-
-# Enable minio for storage
-minio:
-  enabled: true
 
 # Zero out replica counts of other deployment modes
 backend:
