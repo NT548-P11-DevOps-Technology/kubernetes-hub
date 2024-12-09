@@ -41,6 +41,8 @@ loki:
 deploymentMode: SingleBinary
 singleBinary:
   replicas: 1
+  persistence:
+    enabled: false
   resources:
     limits:
       cpu: 100m
