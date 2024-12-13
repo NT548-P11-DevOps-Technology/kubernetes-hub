@@ -103,20 +103,20 @@ spec:
                   key: rootPassword
           # this is the liveness and readiness probes for the mysql container
           # it will check if the mysql server is up and running
-          # livenessProbe:
-          #   exec:
-          #     command:
-          #     - mysqladmin
-          #     - ping
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #     - mysqladmin
-          #     - ping
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+              - mysqladmin
+              - ping
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+              - mysqladmin
+              - ping
+            initialDelaySeconds: 5
+            periodSeconds: 10
           volumeMounts:
             - name: initdb
               mountPath: /docker-entrypoint-initdb.d
