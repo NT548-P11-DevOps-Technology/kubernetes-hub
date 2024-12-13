@@ -120,10 +120,10 @@ spec:
           volumeMounts:
             - name: initdb
               mountPath: /docker-entrypoint-initdb.d
-          # lifecycle:
-          #   postStart:
-          #     exec:
-                # command: ["/bin/sh", "-c", "sleep 10 && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "until mysqladmin ping -h localhost --silent; do sleep 1; done && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
       volumes:
         - name: initdb
           configMap:
