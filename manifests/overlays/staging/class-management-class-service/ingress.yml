@@ -5,3 +5,12 @@ metadata:
 spec:
   rules:
   - host: stag-class-api.th1enlm02.live
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: class-service
+              port:
+                number: 8000

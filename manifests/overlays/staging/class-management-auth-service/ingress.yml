@@ -5,3 +5,12 @@ metadata:
 spec:
   rules:
   - host: stag-auth-api.th1enlm02.live
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: auth-service
+              port:
+                number: 3077

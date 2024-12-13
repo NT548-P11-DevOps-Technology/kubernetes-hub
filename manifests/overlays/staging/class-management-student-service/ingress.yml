@@ -5,3 +5,12 @@ metadata:
 spec:
   rules:
   - host: stag-student-api.th1enlm02.live
+    http:
+      paths:
+        - path: /student
+          pathType: Prefix
+          backend:
+            service:
+              name: student-service
+              port:
+                number: 8080
