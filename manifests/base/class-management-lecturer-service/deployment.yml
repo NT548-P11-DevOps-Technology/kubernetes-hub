@@ -64,8 +64,6 @@ spec:
                   name: lecturer-mongodb-secret
                   key: password
           volumeMounts:
-            - name: lecturer-service-mongodb-data
-              mountPath: /data/db
           livenessProbe:
             exec:
               command:
