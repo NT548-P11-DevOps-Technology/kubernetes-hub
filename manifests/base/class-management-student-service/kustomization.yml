@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - configMap.yml
   - secret.yml
-  - persistentVolume.yml
   - service.yml
   - ingress.yml
   - deployment.yml

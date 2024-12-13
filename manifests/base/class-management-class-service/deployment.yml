@@ -85,9 +85,6 @@ spec:
             - name: init-sql
               mountPath: /docker-entrypoint-initdb.d
       volumes:
-        - name: class-service-postgresql-data
-          persistentVolumeClaim:
-            claimName: postgresql-pvc
         - name: init-sql
           configMap:
             name: class-postgresql-initdb

@@ -127,9 +127,6 @@ spec:
               exec:
                 command: ["/bin/sh", "-c", "sleep 10 && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
       volumes:
-        - name: auth-service-mysql-data
-          persistentVolumeClaim:
-            claimName: auth-mysql-pvc
         - name: initdb
           configMap:
             name: auth-mysql-initdb

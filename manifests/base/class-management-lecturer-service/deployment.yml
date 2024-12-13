@@ -82,7 +82,3 @@ spec:
                 - "db.adminCommand('ping')"
             initialDelaySeconds: 5
             periodSeconds: 10
-      volumes:
-        - name: lecturer-service-mongodb-data
-          persistentVolumeClaim:
-            claimName: mongodb-pvc
