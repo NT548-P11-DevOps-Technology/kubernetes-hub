@@ -80,8 +80,6 @@ spec:
                   name: class-postgresql-secret
                   key: password
           volumeMounts:
-            # - name: class-service-postgresql-data
-            #   mountPath: /var/lib/postgresql/data
             - name: init-sql
               mountPath: /docker-entrypoint-initdb.d
       volumes:
