@@ -9,5 +9,5 @@ patches:
   - path: ./class-management-student-service/ingress.yml
   - path: ./class-management-lecturer-service/ingress.yml
   - path: ./class-management-class-service/ingress.yml
-namePrefix: stag-
+# namePrefix: stag-
 namespace: staging
