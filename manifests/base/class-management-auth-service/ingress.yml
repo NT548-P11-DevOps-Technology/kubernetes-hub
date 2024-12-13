@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: auth-service-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: auth-api.th1enlm02.live
     http:
