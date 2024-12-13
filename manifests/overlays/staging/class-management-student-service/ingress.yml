@@ -7,7 +7,7 @@ spec:
   - host: stag-student-api.th1enlm02.live
     http:
       paths:
-        - path: /student
+        - path: /
           pathType: Prefix
           backend:
             service:
