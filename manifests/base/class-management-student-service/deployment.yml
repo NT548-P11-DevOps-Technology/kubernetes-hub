@@ -22,7 +22,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-student-service-container
-          image: busybox # {"$imagepolicy": "production:student-service-policy"}
+          image: harbor.th1enlm02.live/production/class-management-student-service:1074c51-1734166929 # {"$imagepolicy": "production:student-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -53,24 +53,24 @@ spec:
           livenessProbe:
             exec:
               command:
-              - mysqladmin
-              - ping
+                - mysqladmin
+                - ping
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             exec:
               command:
-              - mysqladmin
-              - ping
+                - mysqladmin
+                - ping
             initialDelaySeconds: 5
             periodSeconds: 10
           volumeMounts:
             - name: initdb
               mountPath: /docker-entrypoint-initdb.d
-          # lifecycle:
-          #   postStart:
-          #     exec:
-          #       command: ["/bin/sh", "-c", "sleep 10 && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
+              # lifecycle:
+              #   postStart:
+              #     exec:
+              #       command: ["/bin/sh", "-c", "sleep 10 && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
       volumes:
         - name: initdb
           configMap:
