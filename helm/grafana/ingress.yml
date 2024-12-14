@@ -7,7 +7,6 @@ metadata:
   namespace: prometheus
   annotations:
     ingress.kubernetes.io/auth-type: "basic"
-    ingress.kubernetes.io/auth-secret: "prometheus-basic-auth"
 spec:
   ingressClassName: nginx
   rules:
