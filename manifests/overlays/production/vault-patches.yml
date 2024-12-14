@@ -121,7 +121,7 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: class-management-lecturer-service-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/lecturer && python app.py"]
 ---
 apiVersion: apps/v1
@@ -146,7 +146,7 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: lecturer-service-mongodb-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/lecturer && docker-entrypoint.sh mongod"]
 ---
 apiVersion: apps/v1
@@ -171,7 +171,7 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: class-management-student-service-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/student && java -jar app.jar"]
 ---
 apiVersion: apps/v1
@@ -196,5 +196,5 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: student-service-mysql-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/student && docker-entrypoint.sh mysqld"]
