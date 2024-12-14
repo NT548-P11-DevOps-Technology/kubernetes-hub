@@ -13,7 +13,19 @@ spec:
     metadata:
       labels:
         app: class-management-auth-service
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "readonly"
+        vault.hashicorp.com/template-static-secret-render-interval: "10s"
+        vault.hashicorp.com/agent-inject-secret-auth: "nt548p11/data/production/auth/service"
+        vault.hashicorp.com/agent-inject-template-auth: |
+          {{- with secret "nt548p11/data/production/auth/service" -}}
+            {{- range $key, $value := .Data.data -}}
+              export {{ $key }}="{{ $value }}" \n
+            {{- end }}
+          {{- end }}
     spec:
+      serviceAccountName: vault-sa
       # initContainers:
       #   - name: wait-for-mysql
       #     image: busybox
@@ -24,28 +36,30 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3077
-          env:
-            - name: BASE_URL_FE
-              valueFrom:
-                configMapKeyRef:
-                  name: auth-mysql-configmap
-                  key: BASE_URL_FE
-            - name: AUTH_SERVICE_PORT
-              value: "3077"
-            - name: AUTH_SERVICE_HOST
-              value: auth-service-mysql
-            - name: AUTH_SERVICE_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: auth-mysql-configmap
-                  key: dbName
-            - name: AUTH_SERVICE_USER
-              value: "root"
-            - name: AUTH_SERVICE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: auth-mysql-secret
-                  key: rootPassword
+          command: ["/bin/sh", "-c"]
+          args: ["source /vault/secrets/auth && node server.js"]
+          # env:
+          #   - name: BASE_URL_FE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: auth-mysql-configmap
+          #         key: BASE_URL_FE
+          #   - name: AUTH_SERVICE_PORT
+          #     value: "3077"
+          #   - name: AUTH_SERVICE_HOST
+          #     value: auth-service-mysql
+          #   - name: AUTH_SERVICE_DATABASE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: auth-mysql-configmap
+          #         key: dbName
+          #   - name: AUTH_SERVICE_USER
+          #     value: "root"
+          #   - name: AUTH_SERVICE_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: auth-mysql-secret
+          #         key: rootPassword
 
 ---
 apiVersion: apps/v1
