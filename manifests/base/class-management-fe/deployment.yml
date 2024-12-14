@@ -14,6 +14,8 @@ spec:
       labels:
         app: class-management-fe
     spec:
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
         - name: class-management-fe-container
           image: harbor.th1enlm02.live/production/class-management-fe:5a6309b-1734161107 # {"$imagepolicy": "production:frontend-policy"}
