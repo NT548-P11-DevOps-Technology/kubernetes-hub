@@ -69,6 +69,7 @@ spec:
             {{- end }}
           {{- end }}
     spec:
+      serviceAccountName: vault-sa
       containers:
         - name: class-management-class-service-container
           command: ["/bin/bash", "-c"]
@@ -94,6 +95,7 @@ spec:
             {{- end }}
           {{- end }}
     spec:
+      serviceAccountName: vault-sa
       containers:
         - name: class-service-postgresql-container
           command: ["/bin/bash", "-c"]
@@ -118,6 +120,8 @@ spec:
               export {{ $key }}="{{ $value }}" \n
             {{- end }}
           {{- end }}
+    spec:
+      serviceAccountName: vault-sa
       containers:
         - name: class-management-lecturer-service-container
           command: ["/bin/bash", "-c"]
@@ -143,6 +147,7 @@ spec:
             {{- end }}
           {{- end }}
     spec:
+      serviceAccountName: vault-sa
       containers:
         - name: lecturer-service-mongodb-container
           command: ["/bin/bash", "-c"]
@@ -168,6 +173,7 @@ spec:
             {{- end }}
           {{- end }}
     spec:
+      serviceAccountName: vault-sa
       containers:
         - name: class-management-student-service-container
           command: ["/bin/bash", "-c"]
@@ -193,6 +199,7 @@ spec:
             {{- end }}
           {{- end }}
     spec:
+      serviceAccountName: vault-sa
       containers:
         - name: student-service-mysql-container
           command: ["/bin/bash", "-c"]
