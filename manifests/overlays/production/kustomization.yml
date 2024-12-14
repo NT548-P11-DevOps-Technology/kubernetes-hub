@@ -1,8 +1,6 @@
 resources:
   - ../../base
   - namespace.yml
-# namePrefix: production-
 namespace: production
-
 patches:
-  - path: patches.yml
+  - path: ./vault-patches.yml

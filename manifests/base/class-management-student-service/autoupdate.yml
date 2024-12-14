@@ -1,9 +1,9 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: frontend-repo
+  name: student-service-repo
 spec:
-  image: harbor.th1enlm02.live/production/class-management-fe
+  image: harbor.th1enlm02.live/production/class-management-student-service
   interval: 20s
   provider: generic
   secretRef:
@@ -13,10 +13,10 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: frontend-policy
+  name: student-service-policy
 spec:
   imageRepositoryRef:
-    name: frontend-repo
+    name: student-service-repo
   filterTags:
     pattern: '^[a-fA-F0-9]+-(?P<ts>.*)$'
     extract: '$ts'
@@ -28,7 +28,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: frontend-img
+  name: student-service-img
 spec:
   interval: 30m
   sourceRef:
@@ -47,5 +47,5 @@ spec:
     push:
       branch: main
   update:
-    path: ./manifests/base/class-management-fe
+    path: ./manifests/base/class-management-student-service
     strategy: Setters

@@ -14,9 +14,11 @@ spec:
       labels:
         app: class-management-class-service
     spec:
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
         - name: class-management-class-service-container
-          image: th1enlm02/class-management-class-service:latest
+          image: busybox # {"$imagepolicy": "production:class-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 80

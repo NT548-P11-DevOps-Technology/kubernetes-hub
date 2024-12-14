@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: base-url-configmap
+data:
+  REACT_APP_BASE_URL_AUTH: https://stag-auth-api.th1enlm02.live
+  REACT_APP_BASE_URL_STUDENT: https://stag-student-api.th1enlm02.live
+  REACT_APP_BASE_URL_LECTURER: https://stag-lecturer-api.th1enlm02.live
+  REACT_APP_BASE_URL_CLASS: https://stag-class-api.th1enlm02.live

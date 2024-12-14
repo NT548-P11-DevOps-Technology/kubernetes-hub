@@ -18,9 +18,11 @@ spec:
       #   - name: wait-for-mongodb
       #     image: busybox
       #     command: ['sh', '-c', 'until nc -z -v -w30 lecturer-service-mongodb 27017; do echo "Waiting for MongoDB"; sleep 5; done']
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
         - name: class-management-lecturer-service-container
-          image: th1enlm02/class-management-lecturer-service:latest
+          image: busybox # {"$imagepolicy": "production:lecturer-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
