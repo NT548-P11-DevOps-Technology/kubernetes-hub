@@ -3,3 +3,6 @@ resources:
   - namespace.yml
 # namePrefix: production-
 namespace: production
+
+patches:
+  - patches.yml

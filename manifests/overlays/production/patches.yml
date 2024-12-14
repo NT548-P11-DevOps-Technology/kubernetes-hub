@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "readonly"
+        vault.hashicorp.com/template-static-secret-render-interval: "10s"
+        vault.hashicorp.com/agent-inject-secret-auth: "nt548p11/data/production/auth/service"
+        vault.hashicorp.com/agent-inject-template-auth: |
+          {{- with secret "nt548p11/data/production/auth/service" -}}
+            {{- range $key, $value := .Data.data -}}
+              export {{ $key }}="{{ $value }}" \n
+            {{- end }}
+          {{- end }}
+    spec:
+      serviceAccountName: vault-sa
+      containers:
+        - name: class-management-auth-service-container
+          command: ["/bin/sh", "-c"]
+          args: ["source /vault/secrets/auth && node server.js"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-mysql-deployment
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "readonly"
+        vault.hashicorp.com/template-static-secret-render-interval: "10s"
+        vault.hashicorp.com/agent-inject-secret-auth: "nt548p11/data/production/auth/database"
+        vault.hashicorp.com/agent-inject-template-auth: |
+          {{- with secret "nt548p11/data/production/auth/database" -}}
+            {{- range $key, $value := .Data.data -}}
+              export {{ $key }}="{{ $value }}" \n
+            {{- end }}
+          {{- end }}
+    spec:
+      serviceAccountName: vault-sa
+      containers:
+        - name: auth-service-mysql-container
+          command: ["/bin/sh", "-c"]
+          args: ["source /vault/secrets/auth && /docker-entrypoint.sh mysqld"]

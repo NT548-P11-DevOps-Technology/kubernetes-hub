@@ -13,19 +13,7 @@ spec:
     metadata:
       labels:
         app: class-management-auth-service
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/role: "readonly"
-        vault.hashicorp.com/template-static-secret-render-interval: "10s"
-        vault.hashicorp.com/agent-inject-secret-auth: "nt548p11/data/production/auth/service"
-        vault.hashicorp.com/agent-inject-template-auth: |
-          {{- with secret "nt548p11/data/production/auth/service" -}}
-            {{- range $key, $value := .Data.data -}}
-              export {{ $key }}="{{ $value }}" \n
-            {{- end }}
-          {{- end }}
     spec:
-      serviceAccountName: vault-sa
       # initContainers:
       #   - name: wait-for-mysql
       #     image: busybox
@@ -36,12 +24,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3077
-          # command: ["/bin/sh", "-c"]
-          # args: ["source /vault/secrets/auth && node server.js"]
-          lifecycle:
-            preStart:
-              exec:
-                command: ["/bin/sh", "-c", "source /vault/secrets/auth"]
 
 ---
 apiVersion: apps/v1
