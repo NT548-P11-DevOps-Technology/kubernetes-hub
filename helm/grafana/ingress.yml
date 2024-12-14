@@ -4,6 +4,7 @@ metadata:
   name: grafana-ingress
   labels:
     name: grafana-ingress
+  namespace: prometheus
   annotations:
     ingress.kubernetes.io/auth-type: "basic"
     ingress.kubernetes.io/auth-secret: "prometheus-basic-auth"
