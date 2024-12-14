@@ -5,4 +5,4 @@ resources:
   - service.yml
   - ingress.yml
   - deployment.yml
-  - autoupdate.yml
+  # - autoupdate.yml
