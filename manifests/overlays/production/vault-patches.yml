@@ -70,8 +70,9 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: class-management-class-service-container
-          command: ["/bin/sh", "-c"]
-          args: ["source /vault/secrets/class && apache2-foreground"]
+          command: ["sleep", "infinity"]
+          # command: ["/bin/sh", "-c"]
+          # args: ["source /vault/secrets/class && apache2-foreground"]
 
 ---
 apiVersion: apps/v1
