@@ -46,7 +46,7 @@ spec:
       serviceAccountName: vault-sa
       containers:
         - name: auth-service-mysql-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/auth && docker-entrypoint.sh mysqld"]
 
 ---
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: class-management-class-service-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/class && apache2-foreground"]
 
 ---
@@ -96,7 +96,7 @@ spec:
     spec:
       containers:
         - name: class-service-postgresql-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/class && docker-entrypoint.sh postgres"]
 
 ---
@@ -120,7 +120,7 @@ spec:
           {{- end }}
       containers:
         - name: class-management-lecturer-service-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/lecturer && python app.py"]
 
 ---
@@ -145,7 +145,7 @@ spec:
     spec:
       containers:
         - name: lecturer-service-mongodb-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/lecturer && docker-entrypoint.sh mongod"]
 
 ---
@@ -170,7 +170,7 @@ spec:
     spec:
       containers:
         - name: class-management-student-service-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/student && java -jar app.jar"]
 
 ---
@@ -195,5 +195,5 @@ spec:
     spec:
       containers:
         - name: student-service-mysql-container
-          command: ["/bin/sh", "-c"]
+          command: ["/bin/bash", "-c"]
           args: ["source /vault/secrets/student && docker-entrypoint.sh mysqld"]
