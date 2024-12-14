@@ -18,7 +18,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-class-service-container
-          image: busybox # {"$imagepolicy": "staging:class-service-policy"}
+          image: harbor.th1enlm02.live/staging/class-management-class-service:d928d9d-1734176186 # {"$imagepolicy": "staging:class-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
