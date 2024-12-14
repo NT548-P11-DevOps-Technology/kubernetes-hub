@@ -3,13 +3,20 @@ resources:
   - namespace.yml
 namespace: staging
 patches:
-  # - path: ./class-management-fe/ingress.yml
-  # # - path: ./class-management-fe/configMap.yml
-  # - path: ./class-management-auth-service/ingress.yml
-  # # - path: ./class-management-auth-service/configMap.yml
-  # - path: ./class-management-student-service/ingress.yml
-  # - path: ./class-management-lecturer-service/ingress.yml
-  # - path: ./class-management-class-service/ingress.yml
-  - path: ./ingress-patches.yml
-  - path: ./configMap-patches.yml
+  - path: ./class-management-fe/ingress.yml
+  - path: ./class-management-fe/configMap.yml
+  - path: ./class-management-fe/deployment.yml
+  - path: ./class-management-fe/autoupdate.yml
+  - path: ./class-management-auth-service/ingress.yml
+  - path: ./class-management-auth-service/deployment.yml
+  - path: ./class-management-auth-service/autoupdate.yml
+  - path: ./class-management-student-service/ingress.yml
+  - path: ./class-management-student-service/deployment.yml
+  - path: ./class-management-student-service/autoupdate.yml
+  - path: ./class-management-lecturer-service/ingress.yml
+  - path: ./class-management-lecturer-service/deployment.yml
+  - path: ./class-management-lecturer-service/autoupdate.yml
+  - path: ./class-management-class-service/ingress.yml
+  - path: ./class-management-class-service/deployment.yml
+  - path: ./class-management-class-service/autoupdate.yml
   - path: ./vault-patches.yml

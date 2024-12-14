@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: class-management-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: class-management-fe
+  template:
+    metadata:
+      labels:
+        app: class-management-fe
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: class-management-fe-container
+          image: busybox # {"$imagepolicy": "staging:frontend-policy"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_BASE_URL_AUTH
+              valueFrom:
+                configMapKeyRef:
+                  name: base-url-configmap
+                  key: REACT_APP_BASE_URL_AUTH
+            - name: REACT_APP_BASE_URL_STUDENT
+              valueFrom:
+                configMapKeyRef:
+                  name: base-url-configmap
+                  key: REACT_APP_BASE_URL_STUDENT
+            - name: REACT_APP_BASE_URL_LECTURER
+              valueFrom:
+                configMapKeyRef:
+                  name: base-url-configmap
+                  key: REACT_APP_BASE_URL_LECTURER
+            - name: REACT_APP_BASE_URL_CLASS
+              valueFrom:
+                configMapKeyRef:
+                  name: base-url-configmap
+                  key: REACT_APP_BASE_URL_CLASS

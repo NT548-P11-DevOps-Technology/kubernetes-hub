@@ -1,0 +1,16 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: student-service-repo
+spec:
+  image: harbor.th1enlm02.live/staging/class-management-student-service
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: student-service-img
+spec:
+  update:
+    path: ./manifests/overlays/staging/class-management-student-service
+    strategy: Setters

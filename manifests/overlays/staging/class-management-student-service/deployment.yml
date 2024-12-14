@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-deployment
+  labels:
+    app: class-management-student-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: class-management-student-service
+  template:
+    metadata:
+      labels:
+        app: class-management-student-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: class-management-student-service-container
+          image: busybox # {"$imagepolicy": "staging:student-service-policy"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

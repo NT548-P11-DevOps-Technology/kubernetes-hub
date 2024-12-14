@@ -1,0 +1,16 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: frontend-repo
+spec:
+  image: harbor.th1enlm02.live/staging/class-management-fe
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: frontend-img
+spec:
+  update:
+    path: ./manifests/overlays/staging/class-management-fe
+    strategy: Setters

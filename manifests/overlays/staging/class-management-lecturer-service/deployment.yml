@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lecturer-deployment
+  labels:
+    app: class-management-lecturer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: class-management-lecturer-service
+  template:
+    metadata:
+      labels:
+        app: class-management-lecturer-service
+    spec:
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: class-management-lecturer-service-container
+          image: busybox # {"$imagepolicy": "staging:lecturer-service-policy"}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
