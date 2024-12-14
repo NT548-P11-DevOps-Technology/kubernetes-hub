@@ -20,24 +20,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-          env:
-            - name: HOST
-              value: class-service-postgresql
-            - name: DB_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: class-postgresql-configmap
-                  key: dbName
-            - name: USER
-              valueFrom:
-                secretKeyRef:
-                  name: class-postgresql-secret
-                  key: username
-            - name: PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: class-postgresql-secret
-                  key: password
 
 ---
 apiVersion: apps/v1
@@ -63,22 +45,6 @@ spec:
           image: postgres:latest
           ports:
             - containerPort: 5432
-          env:
-            - name: POSTGRES_DB
-              valueFrom:
-                configMapKeyRef:
-                  name: class-postgresql-configmap
-                  key: dbName
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: class-postgresql-secret
-                  key: username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: class-postgresql-secret
-                  key: password
           volumeMounts:
             - name: init-sql
               mountPath: /docker-entrypoint-initdb.d

@@ -56,29 +56,6 @@ spec:
           #     memory: 1Gi
           ports:
             - containerPort: 3306
-          # env:
-          #   - name: MYSQL_HOST
-          #     value: auth-service-mysql
-          #   - name: MYSQL_DATABASE
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: auth-mysql-configmap
-          #         key: dbName
-          #   - name: MYSQL_USER
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: auth-mysql-secret
-          #         key: username
-          #   - name: MYSQL_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: auth-mysql-secret
-          #         key: password
-          #   - name: MYSQL_ROOT_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: auth-mysql-secret
-          #         key: rootPassword
           # this is the liveness and readiness probes for the mysql container
           # it will check if the mysql server is up and running
           livenessProbe:

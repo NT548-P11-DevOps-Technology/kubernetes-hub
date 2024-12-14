@@ -24,23 +24,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          env:
-            - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: student-configmap
-                  key: SPRING_DATASOURCE_URL
-            - name: SPRING_DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: student-secret
-                  key: SPRING_DATASOURCE_USERNAME
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: student-secret
-                  key: SPRING_DATASOURCE_PASSWORD
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -65,29 +48,6 @@ spec:
           image: mysql:8.3.0
           ports:
             - containerPort: 3306
-          env:
-            - name: MYSQL_HOST
-              value: student-service-mysql
-            - name: MYSQL_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: student-mysql-configmap
-                  key: dbName
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: student-mysql-secret
-                  key: username
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: student-mysql-secret
-                  key: password
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: student-mysql-secret
-                  key: rootPassword
           livenessProbe:
             exec:
               command:

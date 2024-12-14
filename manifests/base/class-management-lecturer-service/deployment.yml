@@ -24,10 +24,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
-          env:
-            - name: HOST_NAME
-              value: root:th1enlm02_root@lecturer-service-mongodb
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,17 +48,6 @@ spec:
           image: mongo:7.0.9
           ports:
             - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: lecturer-mongodb-secret
-                  key: username
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: lecturer-mongodb-secret
-                  key: password
           volumeMounts:
           livenessProbe:
             exec:
