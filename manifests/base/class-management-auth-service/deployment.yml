@@ -36,30 +36,12 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3077
-          command: ["/bin/sh", "-c"]
-          args: ["source /vault/secrets/auth && node server.js"]
-          # env:
-          #   - name: BASE_URL_FE
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: auth-mysql-configmap
-          #         key: BASE_URL_FE
-          #   - name: AUTH_SERVICE_PORT
-          #     value: "3077"
-          #   - name: AUTH_SERVICE_HOST
-          #     value: auth-service-mysql
-          #   - name: AUTH_SERVICE_DATABASE
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: auth-mysql-configmap
-          #         key: dbName
-          #   - name: AUTH_SERVICE_USER
-          #     value: "root"
-          #   - name: AUTH_SERVICE_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: auth-mysql-secret
-          #         key: rootPassword
+          # command: ["/bin/sh", "-c"]
+          # args: ["source /vault/secrets/auth && node server.js"]
+          lifecycle:
+            preStart:
+              exec:
+                command: ["/bin/sh", "-c", "source /vault/secrets/auth"]
 
 ---
 apiVersion: apps/v1
@@ -92,29 +74,29 @@ spec:
           #     memory: 1Gi
           ports:
             - containerPort: 3306
-          env:
-            - name: MYSQL_HOST
-              value: auth-service-mysql
-            - name: MYSQL_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: auth-mysql-configmap
-                  key: dbName
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: auth-mysql-secret
-                  key: username
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: auth-mysql-secret
-                  key: password
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: auth-mysql-secret
-                  key: rootPassword
+          # env:
+          #   - name: MYSQL_HOST
+          #     value: auth-service-mysql
+          #   - name: MYSQL_DATABASE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: auth-mysql-configmap
+          #         key: dbName
+          #   - name: MYSQL_USER
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: auth-mysql-secret
+          #         key: username
+          #   - name: MYSQL_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: auth-mysql-secret
+          #         key: password
+          #   - name: MYSQL_ROOT_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: auth-mysql-secret
+          #         key: rootPassword
           # this is the liveness and readiness probes for the mysql container
           # it will check if the mysql server is up and running
           livenessProbe:
@@ -134,7 +116,10 @@ spec:
           volumeMounts:
             - name: initdb
               mountPath: /docker-entrypoint-initdb.d
-          # lifecycle:
+          lifecycle:
+            preStop:
+              exec:
+                comman
           #   postStart:
           #     exec:
           #       command: ["/bin/sh", "-c", "until mysqladmin ping -h localhost --silent; do sleep 1; done && mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/init.sql"]
