@@ -6,3 +6,4 @@ resources:
   - class-management-student-service
   - class-management-lecturer-service
   - class-management-class-service
+  - harbor-secret.yml
