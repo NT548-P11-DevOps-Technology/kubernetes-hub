@@ -5,4 +5,4 @@ resources:
 namespace: production
 
 patches:
-  - patches.yml
+  - path: patches.yml
