@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  labels:
+    name: grafana-ingress
+  annotations:
+    ingress.kubernetes.io/auth-type: "basic"
+    ingress.kubernetes.io/auth-secret: "prometheus-basic-auth"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: grafana.th1enlm02.live
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: grafana-operated
+            port:
+              number: 3000
