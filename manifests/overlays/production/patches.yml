@@ -46,4 +46,4 @@ spec:
       containers:
         - name: auth-service-mysql-container
           command: ["/bin/sh", "-c"]
-          args: ["source /vault/secrets/auth && /docker-entrypoint.sh mysqld"]
+          args: ["source /vault/secrets/auth && docker-entrypoint.sh mysqld"]
