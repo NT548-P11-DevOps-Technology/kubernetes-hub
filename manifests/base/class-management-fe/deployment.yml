@@ -18,7 +18,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-fe-container
-          image: busybox # {"$imagepolicy": "production:frontend-policy"}
+          image: harbor.th1enlm02.live/production/class-management-fe:ff440b3-1734259497 # {"$imagepolicy": "production:frontend-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
