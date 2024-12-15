@@ -18,7 +18,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-fe-container
-          image: harbor.th1enlm02.live/staging/class-management-fe:ff440b3-1734259532 # {"$imagepolicy": "staging:frontend-policy"}
+          image: harbor.th1enlm02.live/staging/class-management-fe:722b171-1734281936 # {"$imagepolicy": "staging:frontend-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
