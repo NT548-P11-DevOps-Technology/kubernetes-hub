@@ -22,7 +22,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-student-service-container
-          image: harbor.th1enlm02.live/production/class-management-student-service:70bd524-1734336642 # {"$imagepolicy": "production:student-service-policy"}
+          image: harbor.th1enlm02.live/production/class-management-student-service:70bd524-1734374890 # {"$imagepolicy": "production:student-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
