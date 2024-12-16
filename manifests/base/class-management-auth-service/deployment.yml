@@ -22,7 +22,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-auth-service-container
-          image: harbor.th1enlm02.live/production/class-management-auth-service:390def4-1734260447 # {"$imagepolicy": "production:auth-service-policy"}
+          image: harbor.th1enlm02.live/production/class-management-auth-service:c80b4dd-1734320949 # {"$imagepolicy": "production:auth-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 3077
