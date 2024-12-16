@@ -18,7 +18,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-lecturer-service-container
-          image: harbor.th1enlm02.live/staging/class-management-lecturer-service:25e713e-1734367071 # {"$imagepolicy": "staging:lecturer-service-policy"}
+          image: harbor.th1enlm02.live/staging/class-management-lecturer-service:25e713e-1734374650 # {"$imagepolicy": "staging:lecturer-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
