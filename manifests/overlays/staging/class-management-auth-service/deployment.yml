@@ -18,7 +18,7 @@ spec:
         - name: harbor-secret
       containers:
         - name: class-management-auth-service-container
-          image: harbor.th1enlm02.live/staging/class-management-auth-service:aaf83b8-1734336629 # {"$imagepolicy": "staging:auth-service-policy"}
+          image: busybox # {"$imagepolicy": "staging:auth-service-policy"}
           imagePullPolicy: Always
           ports:
             - containerPort: 3077
