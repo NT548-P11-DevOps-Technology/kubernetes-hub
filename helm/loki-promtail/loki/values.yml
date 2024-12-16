@@ -20,7 +20,7 @@ loki:
       ruler: "loki"
       admin: "admin"
     s3:
-      s3: "s3://ogXBMfE3Xi5Oypz9G2Bo:ogXBMfE3Xi5Oypz9G2Bo@10.0.30.10:9000/loki"
+      s3: "s3://1LYmzSeaQxPCNj1Soooy:NrvapaDsVLxeDEV5R72CBvUT9aMV6hfs5IHj0ncn@10.0.30.10:9000/loki"
       insecure: true
       s3ForcePathStyle: true
   ingester:
